@@ -1,10 +1,20 @@
 const btn = document.getElementById("btn")!;
+const input = document.getElementById("todoinput")! as HTMLButtonElement;
+const form = document.querySelector("form")!;
+const list = document.getElementById("todolist")!;
 
-btn.addEventListener("click", () => {
-  alert("Clicked!");
-});
+function handleSubmit(e: SubmitEvent) {
+  e.preventDefault();
+  console.log("SUBMITTED!");
 
-const mystery: unknown = "Hello World!!!!!!!!!!!!!!!!!";
+  const newTodoText = input.value;
+  const newLI = document.createElement("LI");
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  newLI.append(newTodoText);
+  list.append(newLI);
+  newLI.append(checkbox);
+  input.value = "";
+}
 
-const numChars = (mystery as string).length;
-console.log(numChars);
+form.addEventListener("submit", handleSubmit);
